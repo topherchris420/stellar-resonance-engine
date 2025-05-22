@@ -8,9 +8,17 @@ interface HeaderProps {
   currentMode: 'input' | 'birth-resonance' | 'daily-tune';
   onModeChange: (mode: 'input' | 'birth-resonance' | 'daily-tune') => void;
   chartData: ChartData | null;
+  dustMode?: boolean;
+  onDustModeToggle?: () => void;
 }
 
-export const Header = ({ currentMode, onModeChange, chartData }: HeaderProps) => {
+export const Header = ({ 
+  currentMode, 
+  onModeChange, 
+  chartData,
+  dustMode = true,
+  onDustModeToggle
+}: HeaderProps) => {
   return (
     <header className="relative z-20 p-3 bg-gray-900 border-b border-gray-700 shadow-lg">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
@@ -58,8 +66,19 @@ export const Header = ({ currentMode, onModeChange, chartData }: HeaderProps) =>
           
           <div className="h-8 border-l border-gray-600"></div>
           
-          <div className="font-mono text-xs text-gray-400">
-            SYSTEM STATUS: <span className="text-green-500">OPERATIONAL</span>
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <RetroToggle 
+                pressed={dustMode} 
+                onClick={onDustModeToggle}
+                activeColor="amber"
+                label="DUST"
+              />
+            </div>
+            
+            <div className="font-mono text-xs text-gray-400">
+              SYSTEM STATUS: <span className="text-green-500">OPERATIONAL</span>
+            </div>
           </div>
         </div>
       </div>

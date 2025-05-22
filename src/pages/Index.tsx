@@ -8,6 +8,8 @@ import { ResonantTones } from "@/components/ResonantTones";
 import { CymaticVisualizer } from "@/components/CymaticVisualizer";
 import { LivingOracle } from "@/components/LivingOracle";
 import { ModularFlowEngine } from "@/components/ModularFlowEngine";
+import { DustOverlay } from "@/components/DustOverlay";
+import { CosmicCalibration } from "@/components/CosmicCalibration";
 
 export interface BirthData {
   name: string;
@@ -38,37 +40,59 @@ const Index = () => {
   const [currentMode, setCurrentMode] = useState<'input' | 'birth-resonance' | 'daily-tune'>('input');
   const [chartData, setChartData] = useState<ChartData | null>(null);
   const [activeModule, setActiveModule] = useState<'stellar' | 'archetype' | 'tones' | 'cymatic' | 'oracle'>('stellar');
+  const [dustMode, setDustMode] = useState<boolean>(true);
+  const [calibrating, setCalibrating] = useState<boolean>(false);
+  const [formData, setFormData] = useState<BirthData | null>(null);
 
   const handleBirthDataSubmit = (data: BirthData) => {
-    // In a real app, this would calculate actual natal chart
-    const mockChartData: ChartData = {
-      birthData: data,
-      dominantElement: 'Water',
-      risingSign: 'Scorpio',
-      sunSign: 'Leo',
-      moonSign: 'Pisces',
-      planets: [
-        { name: 'Sun', sign: 'Leo', house: 10, degree: 15, frequency: 126.22 },
-        { name: 'Moon', sign: 'Pisces', house: 5, degree: 28, frequency: 210.42 },
-        { name: 'Mercury', sign: 'Virgo', house: 11, degree: 8, frequency: 141.27 },
-        { name: 'Venus', sign: 'Cancer', house: 9, degree: 22, frequency: 221.23 },
-        { name: 'Mars', sign: 'Aries', house: 6, degree: 3, frequency: 144.72 }
-      ],
-      archetypes: ['Depth Diver', 'Creative Fire', 'Mystic Healer']
-    };
+    setFormData(data);
+    setCalibrating(true);
+  };
+  
+  const handleCalibrationComplete = () => {
+    setCalibrating(false);
     
-    setChartData(mockChartData);
-    setCurrentMode('birth-resonance');
+    if (formData) {
+      // In a real app, this would calculate actual natal chart
+      const mockChartData: ChartData = {
+        birthData: formData,
+        dominantElement: 'Water',
+        risingSign: 'Scorpio',
+        sunSign: 'Leo',
+        moonSign: 'Pisces',
+        planets: [
+          { name: 'Sun', sign: 'Leo', house: 10, degree: 15, frequency: 126.22 },
+          { name: 'Moon', sign: 'Pisces', house: 5, degree: 28, frequency: 210.42 },
+          { name: 'Mercury', sign: 'Virgo', house: 11, degree: 8, frequency: 141.27 },
+          { name: 'Venus', sign: 'Cancer', house: 9, degree: 22, frequency: 221.23 },
+          { name: 'Mars', sign: 'Aries', house: 6, degree: 3, frequency: 144.72 }
+        ],
+        archetypes: ['Depth Diver', 'Creative Fire', 'Mystic Healer']
+      };
+      
+      setChartData(mockChartData);
+      setCurrentMode('birth-resonance');
+    }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-indigo-950 to-slate-900 text-white overflow-hidden">
       <div className="absolute inset-0 bg-stars animate-pulse"></div>
       
+      {dustMode && <DustOverlay intensity="medium" flickerFrequency="low" />}
+      {calibrating && (
+        <CosmicCalibration 
+          onComplete={handleCalibrationComplete} 
+          birthData={formData || undefined}
+        />
+      )}
+      
       <Header 
         currentMode={currentMode} 
         onModeChange={setCurrentMode}
         chartData={chartData}
+        dustMode={dustMode}
+        onDustModeToggle={() => setDustMode(!dustMode)}
       />
 
       <main className="relative z-10 container mx-auto px-4 py-8">

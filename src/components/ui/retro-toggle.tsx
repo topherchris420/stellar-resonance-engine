@@ -1,9 +1,9 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Toggle, ToggleProps } from "@/components/ui/toggle";
+import { Toggle } from "@/components/ui/toggle";
 
-interface RetroToggleProps extends ToggleProps {
+interface RetroToggleProps extends React.ComponentPropsWithoutRef<typeof Toggle> {
   label?: string;
   activeColor?: "red" | "green" | "blue" | "amber" | "aqua" | "gold";
 }
