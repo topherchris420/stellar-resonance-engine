@@ -1,6 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { ChartData } from "@/pages/Index";
+import { RetroToggle } from "@/components/ui/retro-toggle";
+import { IndicatorLight } from "@/components/ui/indicator-light";
 
 interface HeaderProps {
   currentMode: 'input' | 'birth-resonance' | 'daily-tune';
@@ -10,40 +12,56 @@ interface HeaderProps {
 
 export const Header = ({ currentMode, onModeChange, chartData }: HeaderProps) => {
   return (
-    <header className="relative z-20 p-6 backdrop-blur-lg bg-white/5 border-b border-white/10">
-      <div className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="w-8 h-8 bg-gradient-to-r from-gold to-aqua rounded-full animate-pulse"></div>
-          <span className="text-xl font-semibold text-gold">Cosmic Resonance</span>
+    <header className="relative z-20 p-3 bg-gray-900 border-b border-gray-700 shadow-lg">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <div className="flex items-center space-x-4 mb-4 md:mb-0">
+          <div className="w-10 h-10 border-2 border-gold rounded-full relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-gold/50 to-transparent animate-pulse"></div>
+            <div className="absolute inset-0 flex items-center justify-center text-xl">⚛</div>
+          </div>
+          <div>
+            <span className="font-mono font-bold text-gold tracking-widest">DIGICOMP</span>
+            <span className="font-mono text-xs text-white/50 block">
+              DR-70 ASTROCOSMIC PROCESSOR
+            </span>
+          </div>
         </div>
         
-        <nav className="flex items-center space-x-4">
-          <Button
-            variant={currentMode === 'input' ? 'default' : 'ghost'}
-            onClick={() => onModeChange('input')}
-            className="bg-white/10 hover:bg-white/20 border-white/20 text-white"
-          >
-            New Reading
-          </Button>
+        <div className="bg-gray-800 border border-gray-700 rounded-lg p-2 flex items-center gap-4">
+          <div className="flex items-center space-x-3">
+            <IndicatorLight 
+              active={currentMode === 'input'} 
+              color="gold" 
+              label="NEW"
+              className="cursor-pointer"
+              onClick={() => onModeChange('input')}
+            />
+            
+            {chartData && (
+              <IndicatorLight 
+                active={currentMode === 'birth-resonance'} 
+                color="aqua" 
+                label="NATAL"
+                className="cursor-pointer"
+                onClick={() => onModeChange('birth-resonance')}
+              />
+            )}
+            
+            <IndicatorLight 
+              active={currentMode === 'daily-tune'} 
+              color="green" 
+              label="DAILY"
+              className="cursor-pointer"
+              onClick={() => onModeChange('daily-tune')}
+            />
+          </div>
           
-          {chartData && (
-            <Button
-              variant={currentMode === 'birth-resonance' ? 'default' : 'ghost'}
-              onClick={() => onModeChange('birth-resonance')}
-              className="bg-gold/20 hover:bg-gold/30 border-gold/30 text-gold"
-            >
-              Birth Resonance
-            </Button>
-          )}
+          <div className="h-8 border-l border-gray-600"></div>
           
-          <Button
-            variant={currentMode === 'daily-tune' ? 'default' : 'ghost'}
-            onClick={() => onModeChange('daily-tune')}
-            className="bg-aqua/20 hover:bg-aqua/30 border-aqua/30 text-aqua"
-          >
-            Daily Tune-Up
-          </Button>
-        </nav>
+          <div className="font-mono text-xs text-gray-400">
+            SYSTEM STATUS: <span className="text-green-500">OPERATIONAL</span>
+          </div>
+        </div>
       </div>
     </header>
   );

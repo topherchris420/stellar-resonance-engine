@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -105,6 +104,11 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out'
+			},
+			boxShadow: {
+				'glow-sm': '0 0 5px 1px rgba(255, 255, 255, 0.5)',
+				'glow-md': '0 0 10px 2px rgba(255, 255, 255, 0.5)',
+				'glow-lg': '0 0 15px 3px rgba(255, 255, 255, 0.5)',
 			}
 		}
 	},
