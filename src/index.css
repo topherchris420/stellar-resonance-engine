@@ -116,4 +116,14 @@
   .glow-text {
     text-shadow: 0 0 20px currentColor;
   }
+  
+  .bg-stars {
+    background-image: radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.3) 1px, transparent 1px),
+                      radial-gradient(circle at 80% 40%, rgba(244, 114, 182, 0.4) 0.5px, transparent 0.5px),
+                      radial-gradient(circle at 60% 80%, rgba(125, 211, 252, 0.2) 0.8px, transparent 0.8px),
+                      radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.5) 0.3px, transparent 0.3px);
+    background-size: 100px 100px;
+    background-position: 0 0;
+  }
 }
+

@@ -63,7 +63,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-indigo-950 to-slate-900 text-white overflow-hidden">
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><circle cx=\"20\" cy=\"20\" r=\"1\" fill=\"%23ffd700\" opacity=\"0.3\"/><circle cx=\"80\" cy=\"40\" r=\"0.5\" fill=\"%23f472b6\" opacity=\"0.4\"/><circle cx=\"60\" cy=\"80\" r=\"0.8\" fill=\"%237dd3fc\" opacity=\"0.2\"/><circle cx=\"30\" cy=\"70\" r=\"0.3\" fill=\"%23ffd700\" opacity=\"0.5\"/></svg>')] animate-pulse"></div>
+      <div className="absolute inset-0 bg-stars animate-pulse"></div>
       
       <Header 
         currentMode={currentMode} 
