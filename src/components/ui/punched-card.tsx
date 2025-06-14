@@ -49,19 +49,17 @@ export function PunchedCard({
       )}
       
       <div className="grid grid-cols-12 gap-1 mb-3">
-        {displayPattern.map((row, rowIndex) => (
-          <React.Fragment key={rowIndex}>
-            {row.map((isPunched, colIndex) => (
-              <div 
-                key={`${rowIndex}-${colIndex}`}
-                className={cn(
-                  "aspect-square rounded-sm border border-amber-300",
-                  isPunched ? "bg-amber-900/80" : "bg-amber-50"
-                )}
-              />
-            ))}
-          </React.Fragment>
-        ))}
+        {displayPattern.map((row, rowIndex) => 
+          row.map((isPunched, colIndex) => (
+            <div 
+              key={`${rowIndex}-${colIndex}`}
+              className={cn(
+                "aspect-square rounded-sm border border-amber-300",
+                isPunched ? "bg-amber-900/80" : "bg-amber-50"
+              )}
+            />
+          ))
+        )}
       </div>
       
       <div className="font-mono text-amber-900 text-xs">

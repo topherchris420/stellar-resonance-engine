@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,47 +36,32 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
@@ -120,12 +106,20 @@
     background-image: radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.3) 1px, transparent 1px),
                       radial-gradient(circle at 80% 40%, rgba(244, 114, 182, 0.4) 0.5px, transparent 0.5px),
                       radial-gradient(circle at 60% 80%, rgba(125, 211, 252, 0.2) 0.8px, transparent 0.8px),
-                      radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.5) 0.3px, transparent 0.3px);
-    background-size: 100px 100px;
-    background-position: 0 0;
+                      radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.5) 0.3px, transparent 0.3px),
+                      radial-gradient(circle at 90% 10%, rgba(125, 211, 252, 0.3) 0.6px, transparent 0.6px),
+                      radial-gradient(circle at 10% 90%, rgba(244, 114, 182, 0.2) 0.4px, transparent 0.4px);
+    background-size: 150px 150px, 200px 200px, 180px 180px, 120px 120px, 160px 160px, 140px 140px;
+    background-position: 0 0, 50px 50px, 100px 100px, 150px 150px, 200px 200px, 250px 250px;
+    animation: starfield 120s linear infinite;
   }
 
-  /* Retro styling utilities */
+  @keyframes starfield {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-300px); }
+  }
+
+  /* Enhanced retro styling utilities */
   .shadow-glow-sm {
     box-shadow: 0 0 5px 1px currentColor;
   }
@@ -142,10 +136,17 @@
     @apply bg-gray-900 border border-gray-700 rounded-lg shadow-lg p-4;
     background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 4px 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .retro-panel:hover {
+    @apply shadow-glow-sm;
+    border-color: rgba(255, 215, 0, 0.3);
   }
   
   .retro-inset {
     @apply bg-black border border-gray-700 rounded shadow-inner;
+    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
   }
   
   .retro-grid {
@@ -155,7 +156,7 @@
       linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   }
   
-  /* Screen flicker animation */
+  /* Enhanced screen effects */
   @keyframes flicker {
     0% { opacity: 0.1; }
     10% { opacity: 0.05; }
@@ -170,12 +171,81 @@
     100% { opacity: 0.1; }
   }
 
+  @keyframes scanline {
+    0% { transform: translateY(-100vh); }
+    100% { transform: translateY(100vh); }
+  }
+
+  @keyframes cosmic-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3),
+                  inset 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+    50% { 
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6),
+                  inset 0 0 30px rgba(255, 215, 0, 0.2);
+    }
+  }
+
   .animate-flicker {
     animation: flicker 0.2s linear 1;
   }
+
+  .animate-cosmic-pulse {
+    animation: cosmic-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-scanline {
+    animation: scanline 2s linear infinite;
+  }
+
+  /* Enhanced button effects */
+  .retro-button {
+    @apply transition-all duration-200 ease-in-out;
+    background: linear-gradient(145deg, #374151, #1f2937);
+    border: 2px solid #4b5563;
+  }
+
+  .retro-button:hover {
+    background: linear-gradient(145deg, #4b5563, #374151);
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .retro-button:active {
+    transform: translateY(0);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Improved form elements */
+  .cosmic-input {
+    @apply transition-all duration-300 ease-in-out;
+    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+  }
+
+  .cosmic-input:focus {
+    box-shadow: 0 0 15px rgba(125, 211, 252, 0.4),
+                inset 0 0 10px rgba(125, 211, 252, 0.1);
+    border-color: #7dd3fc;
+  }
+
+  /* Loading states */
+  .cosmic-loader {
+    background: conic-gradient(from 0deg, transparent, #ffd700, transparent);
+    animation: spin 2s linear infinite;
+  }
+
+  .cosmic-loader::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #111827;
+    border-radius: inherit;
+  }
 }
 
-/* Add vintage terminal font support */
+/* Enhanced vintage terminal font support */
 @font-face {
   font-family: 'VT323';
   src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
@@ -183,4 +253,47 @@
 
 .font-terminal {
   font-family: 'VT323', monospace;
+  letter-spacing: 1px;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .retro-panel {
+    @apply p-3;
+  }
+  
+  .cosmic-gradient {
+    background: linear-gradient(180deg, #1a1b4b 0%, #2d1b69 50%, #0f172a 100%);
+  }
+  
+  .bg-stars {
+    background-size: 100px 100px, 150px 150px, 120px 120px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse,
+  .animate-spin,
+  .animate-cosmic-pulse,
+  .animate-scanline,
+  .bg-stars {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .retro-panel {
+    border-width: 3px;
+    border-color: #ffffff;
+  }
+  
+  .text-gold {
+    color: #ffff00;
+  }
+  
+  .text-aqua {
+    color: #00ffff;
+  }
 }
